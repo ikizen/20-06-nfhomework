@@ -36,6 +36,13 @@ function App() {
         setItems([...items, response.data]);
       });
     setItemToAdd("");
+
+    api
+      .addTask({
+        content: itemToAdd,
+      })
+      .then((task) => console.log(task))
+      .catch((error) => console.log(error));
   };
 
   const toggleItemDone = ({ id, done }) => {
@@ -91,6 +98,12 @@ function App() {
       .catch((error) => console.log(error));
   }, []);
 
+  const getCompletedItems = () => {
+    console.log("get comleted items!");
+  };
+
+  //TODO:
+
   return (
     <div className="todo-app">
       {/* App-header */}
@@ -127,6 +140,13 @@ function App() {
                   className="btn btn-outline-success btn-sm float-right"
                 >
                   <i className="fa fa-exclamation" />
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-success btn-sm float-right"
+                  onClick={() => getCompletedItems(item)}
+                >
+                  <i className="fa fa-check" />
                 </button>
 
                 <button
